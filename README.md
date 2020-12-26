@@ -1,2 +1,2 @@
 # tax-court
-Random Forrest and SVM predictor for selected tax court decision
+Random Forest and SVM predictor for selected tax court decision
