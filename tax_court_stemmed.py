@@ -37,6 +37,7 @@ sw_combine = factory_sw.get_stop_words()+new_stop
 dictionary = ArrayDictionary(sw_combine)
 stop = StopWordRemover(dictionary)
 
+#remove stopword twice since some words seem to elude the removal process
 df['sengketa'] = df['sengketa'].apply(lambda x: stop.remove(x))
 df['djp_arg'] = df['djp_arg'].apply(lambda x: stop.remove(x))
 df['wp_arg'] = df['wp_arg'].apply(lambda x: stop.remove(x))
@@ -55,5 +56,15 @@ df['sengketa'] = df['sengketa'].apply(lambda x: stemmer.stem(x))
 df['djp_arg'] = df['djp_arg'].apply(lambda x: stemmer.stem(x))
 df['wp_arg'] = df['wp_arg'].apply(lambda x: stemmer.stem(x))
 df['pdpt_majelis'] = df['pdpt_majelis'].apply(lambda x: stemmer.stem(x))
+
+#reapply stopword remover twice
+df['sengketa'] = df['sengketa'].apply(lambda x: stop.remove(x))
+df['djp_arg'] = df['djp_arg'].apply(lambda x: stop.remove(x))
+df['wp_arg'] = df['wp_arg'].apply(lambda x: stop.remove(x))
+df['pdpt_majelis'] = df['pdpt_majelis'].apply(lambda x: stop.remove(x))
+df['sengketa'] = df['sengketa'].apply(lambda x: stop.remove(x))
+df['djp_arg'] = df['djp_arg'].apply(lambda x: stop.remove(x))
+df['wp_arg'] = df['wp_arg'].apply(lambda x: stop.remove(x))
+df['pdpt_majelis'] = df['pdpt_majelis'].apply(lambda x: stop.remove(x))
 
 df.to_csv(r'D:\Blag - DATA\tax_court_stem.csv', index=False, header=True)
