@@ -9,7 +9,7 @@ df = df.apply(lambda x: x.astype(str).str.lower())
 #tokenizing
 
 corpus = Corpus.from_df(df, doc_col='djp_arg')
-tn = Textnet(corpus.tokenized(), min_docs=20)
+tn = Textnet(corpus.tokenized(), min_docs=40)
 
 tn.plot(label_term_nodes=True, label_doc_nodes=True, show_clusters=True)
 words = tn.project(node_type='term')
