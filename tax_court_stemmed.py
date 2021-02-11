@@ -6,7 +6,7 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 
 #Prep
-df = pd.read_excel(r'D:\Blag - DATA\tax_court_clean.xlsx', engine='openpyxl', sheet_name='Sheet1',header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
+df = pd.read_csv(r'D:\Blag - DATA\tax_court_clean.csv',sep=';',header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
 df = df.apply(lambda x: x.astype(str).str.lower())
 
 def filtering(clean):
@@ -28,7 +28,7 @@ factory_sw = StopWordRemoverFactory()
 stopwords = factory_sw.get_stop_words()
 
 new_stop = []
-with open('D:\Blag - DATA\swindo.txt') as inputfile:
+with open('D:\Blag - DATA\swindo.csv') as inputfile:
     for row in csv.reader(inputfile):
         new_stop.append(row[0])
 
