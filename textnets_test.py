@@ -3,7 +3,7 @@ import pandas as pd
 
 #Use command not conda
 #Prep
-df = pd.read_csv(r'D:\Blag - DATA\tax_court_stem.csv',header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
+df = pd.read_csv(r'D:\Blag - DATA\tax_court_stem_2.csv',header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
 df = df.apply(lambda x: x.astype(str).str.lower())
 
 #tokenizing
