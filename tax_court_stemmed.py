@@ -6,15 +6,16 @@ from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
 
 
 #Prep
-df = pd.read_csv(r'D:\Blag - DATA\tax_court_clean.csv',sep=';',header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
+df = pd.read_csv(r'D:\Blag - DATA\taxcourtclean 2.csv',sep=';',encoding="ISO-8859-1",header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
 df = df.apply(lambda x: x.astype(str).str.lower())
 
 def filtering(clean):
-    clean = re.sub('[\W_]+', ' ', clean)
-    clean = re.sub('\d+', ' ', clean)
+    clean = re.sub('((?<!_)(?<![0-9])[0-9]+)', ' ', clean)
+    clean = re.sub('[^\w]', ' ', clean)
     clean = re.sub('\s+', ' ', clean)
-    clean = re.sub('\b[a-zA-Z]\b',' ', clean)
+    clean = re.sub('\b[a-zA-Z_]\b',' ', clean)
     clean = re.sub(' +', ' ',clean)
+    clean = re.sub('_', '-',clean)
     return clean
 
 df['sengketa'] = df['sengketa'].apply(filtering)
@@ -67,4 +68,4 @@ df['djp_arg'] = df['djp_arg'].apply(lambda x: stop.remove(x))
 df['wp_arg'] = df['wp_arg'].apply(lambda x: stop.remove(x))
 df['pdpt_majelis'] = df['pdpt_majelis'].apply(lambda x: stop.remove(x))
 
-df.to_csv(r'D:\Blag - DATA\tax_court_stem.csv', index=False, header=True)
+df.to_csv(r'D:\Blag - DATA\tax_court_stem_2.csv', index=False, header=True)
