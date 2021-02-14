@@ -1,2 +1,3 @@
 # tax-court
-Random Forest and SVM predictor for selected tax court decision
+Machine learning (Random Forest and SVM) and Deep Neural Network classifier for selected transfer pricing tax court decision.
+Work in progress
