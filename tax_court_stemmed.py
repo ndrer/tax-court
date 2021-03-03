@@ -68,4 +68,6 @@ df['djp_arg'] = df['djp_arg'].apply(lambda x: stop.remove(x))
 df['wp_arg'] = df['wp_arg'].apply(lambda x: stop.remove(x))
 df['pdpt_majelis'] = df['pdpt_majelis'].apply(lambda x: stop.remove(x))
 
+df['argumen'] = df['djp_arg'].astype(str) + df['wp_arg'].astype(str)
+
 df.to_csv(r'D:\Blag - DATA\tax_court_stem_2.csv', index=False, header=True)
