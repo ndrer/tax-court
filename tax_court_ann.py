@@ -52,55 +52,56 @@ processed_features_djp = vectorizer.fit_transform(features_djp).toarray()
 processed_features_wp = vectorizer.fit_transform(features_wp).toarray()
 processed_features_maj = vectorizer.fit_transform(features_maj).toarray()
 
-X_train12, X_test12, y_train12, y_test12 = train_test_split(processed_features_maj, labels, test_size=0.2, random_state=1, stratify=labels)
-input_dim = X_train12.shape[1]
+#all argument
+X_train_ann_all, X_test_ann_all, y_train_ann_all, y_test_ann_all = train_test_split(processed_features_maj, labels, test_size=0.2, random_state=1, stratify=labels)
+input_dim = X_train_ann_all.shape[1]
 model = Sequential()
 model.add(layers.Dense(12, input_dim=input_dim, activation='relu',activity_regularizer=l1(0.0001)))
 model.add(layers.Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
-history1 = model.fit(X_train12, y_train12, epochs=120,verbose=False,validation_data=(X_test12, y_test12), batch_size=12)
+history_all = model.fit(X_train_ann_all, y_train_ann_all, epochs=50,verbose=False,validation_data=(X_test_ann_all, y_test_ann_all), batch_size=12)
 
 
-loss, accuracy = model.evaluate(X_train12, y_train12, verbose=False)
+loss, accuracy = model.evaluate(X_train_ann_all, y_train_ann_all, verbose=False)
 print("Training Accuracy: {:.4f}".format(accuracy))
-loss, accuracy = model.evaluate(X_test12, y_test12, verbose=False)
+loss, accuracy = model.evaluate(X_test_ann_all, y_test_ann_all, verbose=False)
 print("Testing Accuracy:  {:.4f}".format(accuracy))
 
-plot_history(history1)
+plot_history(history_all)
 
 #DJP Argument
-X_train13, X_test13, y_train13, y_test13 = train_test_split(processed_features_djp, labels, test_size=0.2, random_state=1, stratify=labels)
-input_dim = X_train13.shape[1]
+X_train_ann_djp, X_test_ann_djp, y_train_ann_djp, y_test_ann_djp = train_test_split(processed_features_djp, labels, test_size=0.2, random_state=1, stratify=labels)
+input_dim = X_train_ann_djp.shape[1]
 model = Sequential()
 model.add(layers.Dense(10, input_dim=input_dim, activation='relu',activity_regularizer=l1(0.0001)))
 model.add(layers.Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
-history2 = model.fit(X_train13, y_train13, epochs=100,verbose=False,validation_data=(X_test13, y_test13), batch_size=10)
+history_djp = model.fit(X_train_ann_djp, y_train_ann_djp, epochs=50,verbose=False,validation_data=(X_test_ann_djp, y_test_ann_djp), batch_size=10)
 
 
-loss, accuracy = model.evaluate(X_train13, y_train13, verbose=False)
+loss, accuracy = model.evaluate(X_train_ann_djp, y_train_ann_djp, verbose=False)
 print("Training Accuracy: {:.4f}".format(accuracy))
-loss, accuracy = model.evaluate(X_test13, y_test13, verbose=False)
+loss, accuracy = model.evaluate(X_test_ann_djp, y_test_ann_djp, verbose=False)
 print("Testing Accuracy:  {:.4f}".format(accuracy))
 
-plot_history(history2)
+plot_history(history_djp)
 
 #WP Argument
-X_train14, X_test14, y_train14, y_test14 = train_test_split(processed_features_wp, labels, test_size=0.2, random_state=1, stratify=labels)
-input_dim = X_train14.shape[1]
+X_train_ann_wp, X_test_ann_wp, y_train_ann_wp, y_test_ann_wp = train_test_split(processed_features_wp, labels, test_size=0.2, random_state=1, stratify=labels)
+input_dim = X_train_ann_wp.shape[1]
 model = Sequential()
 model.add(layers.Dense(10, input_dim=input_dim, activation='relu',activity_regularizer=l1(0.0001)))
 model.add(layers.Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
-history3 = model.fit(X_train14, y_train14, epochs=100,verbose=False,validation_data=(X_test14, y_test14), batch_size=10)
+history_wp = model.fit(X_train_ann_wp, y_train_ann_wp, epochs=50,verbose=False,validation_data=(X_test_ann_wp, y_test_ann_wp), batch_size=10)
 
 
-loss, accuracy = model.evaluate(X_train14, y_train14, verbose=False)
+loss, accuracy = model.evaluate(X_train_ann_wp, y_train_ann_wp, verbose=False)
 print("Training Accuracy: {:.4f}".format(accuracy))
-loss, accuracy = model.evaluate(X_test14, y_test14, verbose=False)
+loss, accuracy = model.evaluate(X_test_ann_wp, y_test_ann_wp, verbose=False)
 print("Testing Accuracy:  {:.4f}".format(accuracy))
 
-plot_history(history3)
+plot_history(history_wp)
