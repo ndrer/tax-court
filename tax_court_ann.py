@@ -56,7 +56,7 @@ processed_features_maj = vectorizer.fit_transform(features_maj).toarray()
 X_train_ann_all, X_test_ann_all, y_train_ann_all, y_test_ann_all = train_test_split(processed_features_maj, labels, test_size=0.2, random_state=1, stratify=labels)
 input_dim = X_train_ann_all.shape[1]
 model = Sequential()
-model.add(layers.Dense(12, input_dim=input_dim, activation='relu',activity_regularizer=l1(0.0001)))
+model.add(layers.Dense(10, input_dim=input_dim, activation='relu',activity_regularizer=l1(0.0001)))
 model.add(layers.Dense(1, activation='sigmoid'))
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
