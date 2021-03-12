@@ -133,7 +133,7 @@ print(confusion_matrix(y_test_nb_wp,y_pred_nb_wp))
 print(classification_report(y_test_nb_wp,y_pred_nb_wp))
 
 #tabulating F1 Score
-tabout_header = ["ML Algo","DJP Argument","WP Argument", "Combined"]
+tabout_header = ["Classifier","DJP Argument","WP Argument", "Both"]
 tabout =[
         ["Logistic regression",round(f1_score(y_test_log_djp, y_pred_log_djp, average='weighted'),3),
                  round(f1_score(y_test_log_wp, y_pred_log_wp, average='weighted'),3),
@@ -156,4 +156,5 @@ tabout =[
                  round(f1_score(y_test_nb_all, y_pred_nb_all, average='weighted'),3)
                  ]
         ]
-print(tabulate(tabout,tabout_header))
+print(tabulate(tabout,tabout_header, tablefmt='pretty'))
+print(tabulate(tabout,tabout_header, tablefmt='html'))
