@@ -58,7 +58,7 @@ input_dim = X_train_ann_all.shape[1]
 model = Sequential()
 model.add(layers.Dense(10, input_dim=input_dim, activation='relu',activity_regularizer=l1(0.0001)))
 model.add(layers.Dense(1, activation='sigmoid'))
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.summary()
 history_all = model.fit(X_train_ann_all, y_train_ann_all, epochs=50,verbose=False,validation_data=(X_test_ann_all, y_test_ann_all), batch_size=12)
 
