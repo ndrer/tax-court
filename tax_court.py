@@ -10,7 +10,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from tabulate import tabulate
 
 #Prep
-df = pd.read_csv(r'D:\Blag - DATA\tax_court_stem_2.csv',header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
+df = pd.read_csv(r'D:\Blag - DATA\tax_court_stem_3.csv',header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
 df = df.apply(lambda x: x.astype(str).str.lower())
 
 features_djp = df['djp_arg'].values

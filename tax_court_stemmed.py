@@ -3,10 +3,11 @@ import pandas as pd
 import re
 from Sastrawi.StopWordRemover.StopWordRemoverFactory import StopWordRemoverFactory, StopWordRemover, ArrayDictionary
 from Sastrawi.Stemmer.StemmerFactory import StemmerFactory
+from sklearn.preprocessing import OneHotEncoder
 
 
 #Prep
-df = pd.read_csv(r'D:\Blag - DATA\taxcourtclean 2.csv',sep=';',encoding="ISO-8859-1",header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
+df = pd.read_csv(r'D:\Blag - DATA\taxcourtclean 3.csv',sep=';',encoding="ISO-8859-1",header=0, converters={'no_putusan':str,'jenis_pajak':str,'sengketa':str,'djp_arg':str,'wp_arg':str,'pdpt_majelis':str})
 df = df.apply(lambda x: x.astype(str).str.lower())
 
 def filtering(clean):
@@ -22,6 +23,9 @@ df['sengketa'] = df['sengketa'].apply(filtering)
 df['djp_arg'] = df['djp_arg'].apply(filtering)
 df['wp_arg'] = df['wp_arg'].apply(filtering)
 df['pdpt_majelis'] = df['pdpt_majelis'].apply(filtering)
+
+one_hot = OneHotEncoder(sparse=False)
+df['putusan'] = df['putusan'].apply(one_hot)
 
 #Remove stopwords
 
@@ -70,4 +74,4 @@ df['pdpt_majelis'] = df['pdpt_majelis'].apply(lambda x: stop.remove(x))
 
 df['argumen'] = df['djp_arg'].astype(str) + df['wp_arg'].astype(str)
 
-df.to_csv(r'D:\Blag - DATA\tax_court_stem_2.csv', index=False, header=True)
+df.to_csv(r'D:\Blag - DATA\tax_court_stem_3.csv', index=False, header=True)
