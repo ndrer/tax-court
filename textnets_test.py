@@ -1,7 +1,7 @@
 from textnets import Corpus, Textnet
 import pandas as pd
 
-#Use command not conda
+#Use python from command not conda
 
 #DJP Win
 #Prep
