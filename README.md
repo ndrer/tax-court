@@ -1,2 +1,2 @@
 # tax-court
-Machine learning (Random forest, Naive Bayes, SVM, Logistic, kNN) and Deep Neural Network classifier for selected transfer pricing tax court decisions. Work in progress.
+Random forest, Naive Bayes, SVM, Logistic, kNN, XGBoost, and Neural Network classifiers for selected transfer pricing tax court decisions. Work in progress.
